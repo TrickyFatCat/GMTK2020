@@ -11,10 +11,10 @@ const TRANSITION_DURATION: float = 0.75
 
 var target_state: String = ""
 var masks: Array = [
-	"res://materials/TransitionScreen/TransitionMasks/shader_mask_shards_1.png",
-	"res://materials/TransitionScreen/TransitionMasks/shader_mask_shards_2.png",
-	"res://materials/TransitionScreen/TransitionMasks/shader_mask_shards_3.png",
-	"res://materials/TransitionScreen/TransitionMasks/shader_mask_shards_4.png"
+	"res://materials/TransitionScreen/Masks/shader_mask_shards_1.png",
+	"res://materials/TransitionScreen/Masks/shader_mask_shards_2.png",
+	"res://materials/TransitionScreen/Masks/shader_mask_shards_3.png",
+	"res://materials/TransitionScreen/Masks/shader_mask_shards_4.png"
 ]
 
 onready var stateMachine: StateMachine = $StateMachine

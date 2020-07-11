@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/SplashScreens/splash_Team.png" type="Texture" id=1]
+[ext_resource path="res://src/Main/SplashScreen/SplashScreen.tscn" type="PackedScene" id=2]
+
+[node name="SplashScreen" instance=ExtResource( 2 )]
+next_level = "res://levels/Menus/MainMenu.tscn"
+
+[node name="SplashTexture" parent="CanvasLayer" index="0"]
+texture = ExtResource( 1 )

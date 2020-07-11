@@ -1,16 +1,30 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+var next_level: String
+var current_level: String
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	TransitionScreen.connect("screen_closed", self, "load_level")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func load_level() -> void:
+	if next_level != current_level:
+		load_next_level()
+	else:
+		reload_current_level()
+
+
+func reload_current_level() -> void:
+	get_tree().reload_current_scene()
+
+
+func load_next_level() -> void:
+	if next_level:
+		load_level_by_path(next_level)
+	else:
+		push_error("Next level must be defined")
+
+
+func load_level_by_path(path: String) -> void:
+	get_tree().change_scene(path)
