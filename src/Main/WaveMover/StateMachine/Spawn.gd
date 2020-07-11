@@ -7,6 +7,7 @@ export var target_position: float = 0
 var waveMover: WaveMover
 
 onready var spawnTween: Tween = $SpawnTween
+onready var enemyContainer: Node2D = get_node("../../EnemyContainer")
 
 
 func _on_SpawnTween_tween_all_completed() -> void:
@@ -38,4 +39,6 @@ func enter(msg: Dictionary = {}) -> void:
 
 
 func exit() -> void:
+	for enemy in enemyContainer.get_children():
+		enemy.stateMachine.transition_to("Active")
 	return

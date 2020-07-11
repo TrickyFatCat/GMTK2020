@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Projectile
 
 export var velocity_max: Vector2 = Vector2(0, 300)
 export var move_direction = Vector2.ZERO

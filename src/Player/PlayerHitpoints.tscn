@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Main/HitPoints/HitPoints.tscn" type="PackedScene" id=1]
+
+[node name="PlayerHitpoints" instance=ExtResource( 1 )]
+collision_layer = 0
+collision_mask = 40
+can_be_invulnerable = true

@@ -1,18 +1,19 @@
 extends State
 
+onready var hitpoints: HitPoints = get_node("../../EnemyHitpoints")
+
 
 func unhandled_input(event: InputEvent) -> void:
-	return
+	pass
 
 
 func physics_process(delta: float) -> void:
-	return
+	pass
 
 
 func enter(msg: Dictionary = {}) -> void:
-	Global.call_deferred("deactivate_player")
-	return
+	hitpoints.is_invulnerable = true
 
 
 func exit() -> void:
-	return
+	hitpoints.is_invulnerable = false

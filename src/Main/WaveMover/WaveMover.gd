@@ -1,22 +1,16 @@
 extends Node2D
 class_name WaveMover
 
-onready var waveTween: Tween = $WaveTween
 onready var stateMachine: StateMachine = $StateMachine
-
+onready var enemyContainer: Node2D = $EnemyContainer
 
 func _on_DeathZone_body_entered(body: Node) -> void:
-	TransitionScreen.start_transition()
-
-
-func _on_WaveTween_tween_all_completed() -> void:
-	if stateMachine.is_current_state("Spawn"):
-		stateMachine.transition_to("MoveSideways")
+	Global.player.destroy_player()
 
 
 func _ready() -> void:
 	GameManager.connect("game_started", self, "spawn")
-	
+	Events.connect("enemy_dead", self, "check_container")
 
 
 func set_position_x(new_position: float) -> void:
@@ -29,3 +23,9 @@ func set_position_y(new_position: float) -> void:
 
 func spawn() -> void:
 	stateMachine.transition_to("Spawn")
+
+
+func check_container() -> void:
+	if enemyContainer.get_child_count() == 0:
+		Events.emit_signal("wave_complete")
+		queue_free()

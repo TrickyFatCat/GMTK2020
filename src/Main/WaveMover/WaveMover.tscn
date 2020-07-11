@@ -3,7 +3,7 @@
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Main/StateMachine/State.gd" type="Script" id=2]
 [ext_resource path="res://src/Main/WaveMover/WaveMover.gd" type="Script" id=3]
-[ext_resource path="res://assets/Eneimies/spr_enemy00.png" type="Texture" id=4]
+[ext_resource path="res://src/Main/BaseEnemy/BaseEnemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Main/WaveMover/StateMachine/Inactive.gd" type="Script" id=5]
 [ext_resource path="res://src/Main/WaveMover/StateMachine/Spawn.gd" type="Script" id=6]
 [ext_resource path="res://src/Main/WaveMover/StateMachine/MoveSideways.gd" type="Script" id=7]
@@ -14,42 +14,6 @@ extents = Vector2( 640, 20 )
 
 [node name="WaveMover" type="Node2D"]
 script = ExtResource( 3 )
-
-[node name="spr_enemy00" type="Sprite" parent="."]
-position = Vector2( -136, 8 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
-centered = false
-
-[node name="spr_enemy01" type="Sprite" parent="."]
-position = Vector2( -88, 8 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
-centered = false
-
-[node name="spr_enemy02" type="Sprite" parent="."]
-position = Vector2( -40, 8 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
-centered = false
-
-[node name="spr_enemy03" type="Sprite" parent="."]
-position = Vector2( 8, 8 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
-centered = false
-
-[node name="spr_enemy04" type="Sprite" parent="."]
-position = Vector2( 56, 8 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
-centered = false
-
-[node name="spr_enemy05" type="Sprite" parent="."]
-position = Vector2( 104, 8 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
-centered = false
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -82,12 +46,44 @@ script = ExtResource( 8 )
 script = ExtResource( 2 )
 
 [node name="DeathZone" type="Area2D" parent="."]
-monitorable = false
-collision_layer = 0
+collision_layer = 32
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
 position = Vector2( 0, 24 )
 shape = SubResource( 1 )
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="BaseEnemy" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( -216, 24 )
+
+[node name="BaseEnemy2" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( -168, 24 )
+
+[node name="BaseEnemy3" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( -120, 24 )
+
+[node name="BaseEnemy4" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( -72, 24 )
+
+[node name="BaseEnemy5" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( -24, 24 )
+
+[node name="BaseEnemy6" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 24, 24 )
+
+[node name="BaseEnemy7" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 72, 24 )
+
+[node name="BaseEnemy8" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 120, 24 )
+
+[node name="BaseEnemy9" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 168, 24 )
+
+[node name="BaseEnemy10" parent="EnemyContainer" instance=ExtResource( 4 )]
+position = Vector2( 216, 24 )
 [connection signal="tween_all_completed" from="StateMachine/Spawn/SpawnTween" to="StateMachine/Spawn" method="_on_SpawnTween_tween_all_completed"]
 [connection signal="tween_all_completed" from="StateMachine/MoveSideways/SidewaysTween" to="StateMachine/MoveSideways" method="_on_SidewaysTween_tween_all_completed"]
 [connection signal="timeout" from="StateMachine/MoveSideways/PauseTimer" to="StateMachine/MoveSideways" method="_on_PauseTimer_timeout"]

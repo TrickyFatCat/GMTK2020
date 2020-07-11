@@ -6,7 +6,8 @@ var player: Player
 
 
 func deactivate_player() -> void:
-	player.is_active = false
+	if player:
+		player.is_active = false
 
 
 func activate_player() -> void:

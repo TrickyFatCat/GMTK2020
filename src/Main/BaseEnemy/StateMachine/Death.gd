@@ -1,18 +1,20 @@
 extends State
 
+onready var sprite: AnimatedSprite = get_node("../../AnimatedSprite")
+
 
 func unhandled_input(event: InputEvent) -> void:
-	return
+	pass
 
 
 func physics_process(delta: float) -> void:
-	return
+	pass
 
 
 func enter(msg: Dictionary = {}) -> void:
-	Global.call_deferred("deactivate_player")
-	return
+	sprite.animation = "explosion"
+	sprite.play()
 
 
 func exit() -> void:
-	return
+	pass

@@ -1,0 +1,59 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://src/Main/StateMachine/State.gd" type="Script" id=2]
+[ext_resource path="res://src/Main/BaseEnemy/EnemyHitpoints.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Explosion/spr_explosion_01.png" type="Texture" id=4]
+[ext_resource path="res://assets/Explosion/spr_explosion_02.png" type="Texture" id=5]
+[ext_resource path="res://assets/Explosion/spr_explosion_03.png" type="Texture" id=6]
+[ext_resource path="res://assets/Explosion/spr_explosion_00.png" type="Texture" id=7]
+[ext_resource path="res://assets/Explosion/spr_explosion_04.png" type="Texture" id=8]
+[ext_resource path="res://src/Main/BaseEnemy/BaseEnemy.gd" type="Script" id=9]
+[ext_resource path="res://assets/Eneimies/spr_enemy00.png" type="Texture" id=10]
+[ext_resource path="res://src/Main/BaseEnemy/StateMachine/Death.gd" type="Script" id=11]
+[ext_resource path="res://src/Main/BaseEnemy/StateMachine/Inactive.gd" type="Script" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 10 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "explosion",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 44.0429, 39.1282 )
+
+[node name="BaseEnemy" type="Node2D"]
+scale = Vector2( 0.25, 0.25 )
+script = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+
+[node name="EnemyHitpoints" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="EnemyHitpoints" index="0"]
+shape = SubResource( 2 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+initial_state = NodePath("Inactive")
+
+[node name="Inactive" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+
+[node name="Active" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="on_hitpoints_zero" from="EnemyHitpoints" to="." method="_on_EnemyHitpoints_on_hitpoints_zero"]
+
+[editable path="EnemyHitpoints"]

@@ -19,7 +19,7 @@ func _on_StartTimer_timeout():
 
 func _ready() -> void:
 	Events.connect("level_loaded", self, "start_transition")
-	Events.connect("player_dead", self, "restart_session")
+	Events.connect("player_dead", self, "stop_session")
 	TransitionScreen.connect("screen_opened", self, "start_session")
 	startTimer.wait_time = START_TIMER_DURATION
 

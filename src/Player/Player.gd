@@ -7,7 +7,16 @@ var is_active: bool = true setget set_is_active
 
 onready var stateMachine: StateMachine = $StateMachine
 onready var collider: CollisionShape2D = $CollisionShape2D
-onready var sprite: Sprite = $Sprite
+onready var sprite: AnimatedSprite = $Sprite
+
+
+func _on_PlayerHitpoints_on_hitpoints_decreased() -> void:
+	Events.emit_signal("player_took_damage")
+
+
+func _on_PlayerHitpoints_on_hitpoints_zero() -> void:
+	stateMachine.transition_to("Death")
+#	Events.emit_signal("player_dead")
 
 
 func _init() -> void:
@@ -35,3 +44,12 @@ func start_spawn() -> void:
 
 func set_sprite_position(new_position: float) -> void:
 	sprite.position.y = new_position
+
+
+func destroy_player() -> void:
+	$PlayerHitpoints.decrease_hitpoints($PlayerHitpoints.hitpoints)
+
+
+func _on_Sprite_animation_finished() -> void:
+	if stateMachine.is_current_state("Death"):
+		stateMachine.transition_to("Inactive")
