@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
+[ext_resource path="res://src/Player/StateMachine/Fly.gd" type="Script" id=2]
+[ext_resource path="res://assets/Player/spr_playerBlue.png" type="Texture" id=3]
+[ext_resource path="res://src/Player/Player.gd" type="Script" id=4]
+[ext_resource path="res://src/Player/StateMachine/Inactive.gd" type="Script" id=5]
+[ext_resource path="res://src/Player/StateMachine/Death.gd" type="Script" id=6]
+[ext_resource path="res://src/Player/StateMachine/Spawn.gd" type="Script" id=7]
+[ext_resource path="res://src/Player/StateMachine/Move.gd" type="Script" id=8]
+[ext_resource path="res://src/Player/StateMachine/Idle.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 2147483652
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+shape = SubResource( 1 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+initial_state = NodePath("Move/Idle")
+
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+velocity_max = Vector2( 500, 0 )
+acceleration = Vector2( 1500, 0 )
+friction = 1500.0
+
+[node name="Idle" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 9 )
+
+[node name="Fly" type="Node" parent="StateMachine/Move"]
+script = ExtResource( 2 )
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="Inactive" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )

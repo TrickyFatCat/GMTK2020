@@ -1,7 +1,8 @@
 extends Node
 
+const FLOOR_NORMAL: Vector2 = Vector2.ZERO
+
 var player: Player
-var player_hitpoints: int
 
 
 func deactivate_player() -> void:
