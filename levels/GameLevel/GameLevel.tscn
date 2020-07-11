@@ -8,6 +8,7 @@
 
 [node name="GameLevel" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
+next_level = "res://levels/Menus/FinishMenu.tscn"
 
 [node name="Player" parent="." index="0" instance=ExtResource( 2 )]
 position = Vector2( 320, 320 )
@@ -16,3 +17,10 @@ position = Vector2( 320, 320 )
 
 [node name="WaveMover" parent="." index="2" instance=ExtResource( 5 )]
 position = Vector2( 320, -50 )
+
+[node name="MoveSideways" parent="WaveMover/StateMachine" index="2"]
+move_count = 2
+move_time = 0.5
+move_pause = 0.1
+
+[editable path="WaveMover"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Main/StateMachine/State.gd" type="Script" id=2]
@@ -6,7 +6,11 @@
 [ext_resource path="res://assets/Eneimies/spr_enemy00.png" type="Texture" id=4]
 [ext_resource path="res://src/Main/WaveMover/StateMachine/Inactive.gd" type="Script" id=5]
 [ext_resource path="res://src/Main/WaveMover/StateMachine/Spawn.gd" type="Script" id=6]
-[ext_resource path="res://src/Main/WaveMover/StateMachine/Active.gd" type="Script" id=7]
+[ext_resource path="res://src/Main/WaveMover/StateMachine/MoveSideways.gd" type="Script" id=7]
+[ext_resource path="res://src/Main/WaveMover/StateMachine/MoveDown.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 640, 20 )
 
 [node name="WaveMover" type="Node2D"]
 script = ExtResource( 3 )
@@ -47,8 +51,6 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="WaveTween" type="Tween" parent="."]
-
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
 initial_state = NodePath("Inactive")
@@ -59,9 +61,35 @@ script = ExtResource( 5 )
 [node name="Spawn" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
-[node name="Active" type="Node" parent="StateMachine"]
+[node name="SpawnTween" type="Tween" parent="StateMachine/Spawn"]
+
+[node name="MoveSideways" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
+move_count = 6
+move_distance = 25
+
+[node name="SidewaysTween" type="Tween" parent="StateMachine/MoveSideways"]
+
+[node name="PauseTimer" type="Timer" parent="StateMachine/MoveSideways"]
+one_shot = true
+
+[node name="MoveDown" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+
+[node name="DownTween" type="Tween" parent="StateMachine/MoveDown"]
 
 [node name="Destroy" type="Node" parent="StateMachine"]
 script = ExtResource( 2 )
-[connection signal="tween_completed" from="WaveTween" to="." method="_on_WaveTween_tween_completed"]
+
+[node name="DeathZone" type="Area2D" parent="."]
+monitorable = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2( 0, 24 )
+shape = SubResource( 1 )
+[connection signal="tween_all_completed" from="StateMachine/Spawn/SpawnTween" to="StateMachine/Spawn" method="_on_SpawnTween_tween_all_completed"]
+[connection signal="tween_all_completed" from="StateMachine/MoveSideways/SidewaysTween" to="StateMachine/MoveSideways" method="_on_SidewaysTween_tween_all_completed"]
+[connection signal="timeout" from="StateMachine/MoveSideways/PauseTimer" to="StateMachine/MoveSideways" method="_on_PauseTimer_timeout"]
+[connection signal="tween_all_completed" from="StateMachine/MoveDown/DownTween" to="StateMachine/MoveDown" method="_on_DownTween_tween_all_completed"]
+[connection signal="body_entered" from="DeathZone" to="." method="_on_DeathZone_body_entered"]

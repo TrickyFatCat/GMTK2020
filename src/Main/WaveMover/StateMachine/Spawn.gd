@@ -4,13 +4,18 @@ const SPAWN_TIME: float = 0.75
 
 export var target_position: float = 0
 
-var waveMover: Node2D
-var waveTween: Tween
+var waveMover: WaveMover
+
+onready var spawnTween: Tween = $SpawnTween
+
+
+func _on_SpawnTween_tween_all_completed() -> void:
+	if stateMachine.is_current_state("Spawn"):
+		stateMachine.transition_to("MoveSideways")
 
 
 func _ready() -> void:
 	waveMover = get_node("../..")
-	waveTween = get_node("../../WaveTween")
 
 
 # warning-ignore:unused_argument
@@ -20,16 +25,16 @@ func physics_process(delta: float) -> void:
 
 # warning-ignore:unused_argument
 func enter(msg: Dictionary = {}) -> void:
-	waveTween.interpolate_method(
+	spawnTween.interpolate_method(
 		waveMover,
-		"set_spawn_position",
+		"set_position_y",
 		waveMover.position.y,
 		target_position,
 		SPAWN_TIME,
 		Tween.TRANS_ELASTIC,
 		Tween.EASE_OUT 
 	)
-	waveTween.start()
+	spawnTween.start()
 
 
 func exit() -> void:
