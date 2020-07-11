@@ -1,5 +1,8 @@
 extends State
 
+const TARGET_POSITION: float = 0.0
+const SPAWN_DURATION: float = 0.75
+
 onready var player: Player = Global.player
 onready var spawnTween: Tween = $SpawnTween
 
@@ -17,9 +20,16 @@ func physics_process(delta: float) -> void:
 
 
 func enter(msg: Dictionary = {}) -> void:
-	spawnTween.interpolate_method(player, "set_spawn_scale", 0, 0.35, 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	spawnTween.interpolate_method(
+		player,
+		"set_sprite_position",
+		player.SPRITE_INIT_POS,
+		TARGET_POSITION,
+		SPAWN_DURATION,
+		Tween.TRANS_ELASTIC,
+		Tween.EASE_OUT
+	)
 	spawnTween.start()
-	pass
 
 
 func exit() -> void:

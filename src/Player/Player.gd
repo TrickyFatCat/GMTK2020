@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Player
 
+const SPRITE_INIT_POS: float = 200.0
+
 var is_active: bool = true setget set_is_active
 
 onready var stateMachine: StateMachine = $StateMachine
@@ -10,6 +12,10 @@ onready var sprite: Sprite = $Sprite
 
 func _init() -> void:
 	Global.player = self
+
+
+func _ready() -> void:
+	set_sprite_position(SPRITE_INIT_POS)
 
 
 func set_is_active(value: bool) -> void:
@@ -27,6 +33,5 @@ func start_spawn() -> void:
 	sprite.visible = true
 
 
-func set_spawn_scale(new_scale: float) -> void:
-	scale.x = new_scale
-	scale.y = new_scale
+func set_sprite_position(new_position: float) -> void:
+	sprite.position.y = new_position

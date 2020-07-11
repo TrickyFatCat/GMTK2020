@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/StateMachine/Fly.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/Player/StateMachine/Spawn.gd" type="Script" id=7]
 [ext_resource path="res://src/Player/StateMachine/Move.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/StateMachine/Idle.gd" type="Script" id=9]
+[ext_resource path="res://src/Player/Weapon/PlayerWeapon.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -19,7 +20,6 @@ collision_mask = 2147483652
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -52,4 +52,6 @@ script = ExtResource( 6 )
 
 [node name="Inactive" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
+
+[node name="PlayerWeapon" parent="." instance=ExtResource( 10 )]
 [connection signal="tween_all_completed" from="StateMachine/Spawn/SpawnTween" to="StateMachine/Spawn" method="_on_SpawnTween_tween_all_completed"]
