@@ -5,6 +5,7 @@ var is_active: bool = true setget set_is_active
 
 onready var stateMachine: StateMachine = $StateMachine
 onready var collider: CollisionShape2D = $CollisionShape2D
+onready var sprite: Sprite = $Sprite
 
 
 func _init() -> void:
@@ -16,6 +17,16 @@ func set_is_active(value: bool) -> void:
 	
 	if !collider:
 		return
-
-	$DamageDetector/CollisionShape2D.disabled = !value
+	
 	stateMachine.set_process_unhandled_input(value)
+	sprite.visible = value
+
+
+func start_spawn() -> void:
+	stateMachine.transition_to("Spawn")
+	sprite.visible = true
+
+
+func set_spawn_scale(new_scale: float) -> void:
+	scale.x = new_scale
+	scale.y = new_scale

@@ -1,6 +1,6 @@
 extends GameLevel
 
-const SPLASH_DURATION: float = 2.0
+const SPLASH_DURATION: float = 1.5
 
 onready var splashTimer: Timer = $SplashTimer
 
@@ -12,7 +12,3 @@ func _on_SplashTimer_timeout() -> void:
 func _ready() -> void:
 	splashTimer.wait_time = SPLASH_DURATION
 	GameManager.connect("game_started", splashTimer, "start")
-#	splashTimer.start()
-
-
-

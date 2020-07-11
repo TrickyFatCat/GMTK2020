@@ -7,6 +7,8 @@ signal game_stoped()
 const START_TRANSITION_DELAY: float = 0.5
 const START_TIMER_DURATION: float = 0.25
 
+var start_timer_duration: float = 0.25 setget set_start_timer
+
 onready var stateMachine: StateMachine = $StateMachine
 onready var startTimer: Timer = $StartTimer
 
@@ -39,3 +41,7 @@ func stop_session() -> void:
 func restart_session() -> void:
 	LevelLoader.next_level = LevelLoader.current_level
 	start_transition()
+
+
+func set_start_timer(value: float) -> void:
+	startTimer.wait_time = value
