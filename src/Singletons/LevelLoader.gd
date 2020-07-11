@@ -1,7 +1,7 @@
 extends Node
 
 var next_level: String
-var current_level: String
+var current_level: GameLevel
 
 
 func _ready() -> void:
@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func load_level() -> void:
-	if next_level != current_level:
+	if next_level != current_level.name:
 		load_next_level()
 	else:
 		reload_current_level()

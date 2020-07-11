@@ -39,7 +39,7 @@ func stop_session() -> void:
 
 
 func restart_session() -> void:
-	LevelLoader.next_level = LevelLoader.current_level
+	LevelLoader.next_level = LevelLoader.current_level.name
 	start_transition()
 
 

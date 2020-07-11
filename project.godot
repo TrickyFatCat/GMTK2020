@@ -28,12 +28,24 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/Main/StateMachine/StateMachine.gd"
+}, {
+"base": "Node2D",
+"class": "WaveMover",
+"language": "GDScript",
+"path": "res://src/Main/WaveMover/WaveMover.gd"
+}, {
+"base": "Position2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://src/Main/Weapon/BaseWeapon.gd"
 } ]
 _global_script_class_icons={
 "GameLevel": "",
 "Player": "",
 "State": "res://assets/EngineIcons/icon_state.svg",
-"StateMachine": "res://assets/EngineIcons/icon_stateMachine.svg"
+"StateMachine": "res://assets/EngineIcons/icon_stateMachine.svg",
+"WaveMover": "",
+"Weapon": ""
 }
 
 [application]
@@ -86,6 +98,8 @@ shoot={
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="limits"
 2d_physics/layer_4="bonus"
+2d_physics/layer_5="player_projectile"
+2d_physics/layer_6="enemy_projectile"
 
 [rendering]
 

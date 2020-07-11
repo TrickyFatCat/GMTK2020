@@ -16,4 +16,4 @@ func _ready() -> void:
 		if next_level:
 			LevelLoader.next_level = next_level
 		
-		LevelLoader.current_level = self.name
+		LevelLoader.current_level = self

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Player/Weapon/PlayerWeapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Player/Weapon/WeaponController/WeaponController.gd" type="Script" id=2]
+[ext_resource path="res://src/Main/Weapon/BaseWeapon.gd" type="Script" id=3]
+
+
+[node name="WeaponController" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="PlayerWeapon" type="Position2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -44.6488 )
+script = ExtResource( 3 )
+projectile_path = "res://src/Player/Weapon/PlayerProjectile.tscn"

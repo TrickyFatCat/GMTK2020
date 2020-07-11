@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/StateMachine/Fly.gd" type="Script" id=2]
@@ -9,13 +9,14 @@
 [ext_resource path="res://src/Player/StateMachine/Spawn.gd" type="Script" id=7]
 [ext_resource path="res://src/Player/StateMachine/Move.gd" type="Script" id=8]
 [ext_resource path="res://src/Player/StateMachine/Idle.gd" type="Script" id=9]
-[ext_resource path="res://src/Player/Weapon/PlayerWeapon.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Player/Weapon/WeaponController/WeaponController.gd" type="Script" id=10]
+[ext_resource path="res://src/Player/Weapon/PlayerWeapon.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
 [node name="Player" type="KinematicBody2D"]
-scale = Vector2( 0.35, 0.35 )
+scale = Vector2( 0.25, 0.25 )
 collision_mask = 2147483652
 script = ExtResource( 4 )
 
@@ -53,5 +54,8 @@ script = ExtResource( 6 )
 [node name="Inactive" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
 
-[node name="PlayerWeapon" parent="." instance=ExtResource( 10 )]
+[node name="WeaponController" type="Node2D" parent="."]
+script = ExtResource( 10 )
+
+[node name="PlayerWeapon" parent="WeaponController" instance=ExtResource( 11 )]
 [connection signal="tween_all_completed" from="StateMachine/Spawn/SpawnTween" to="StateMachine/Spawn" method="_on_SpawnTween_tween_all_completed"]
