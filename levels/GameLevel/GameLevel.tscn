@@ -4,7 +4,7 @@
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Limits/Limits.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/GameLevel/GameLevel.gd" type="Script" id=4]
-[ext_resource path="res://src/Main/WaveMover/WaveMover.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/WaveSpawner/WaveSpawner.tscn" type="PackedScene" id=6]
 
 [node name="GameLevel" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
@@ -15,12 +15,5 @@ position = Vector2( 320, 320 )
 
 [node name="Limits" parent="." index="1" instance=ExtResource( 3 )]
 
-[node name="WaveMover" parent="." index="2" instance=ExtResource( 5 )]
-position = Vector2( 320, -50 )
-
-[node name="MoveSideways" parent="WaveMover/StateMachine" index="2"]
-move_count = 2
-move_time = 0.5
-move_pause = 0.1
-
-[editable path="WaveMover"]
+[node name="WaveSpawner" parent="." index="2" instance=ExtResource( 6 )]
+position = Vector2( 320, -200 )

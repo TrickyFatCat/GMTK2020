@@ -9,7 +9,7 @@ func _on_DeathZone_body_entered(body: Node) -> void:
 
 
 func _ready() -> void:
-	GameManager.connect("game_started", self, "spawn")
+#	GameManager.connect("game_started", self, "spawn")
 	Events.connect("enemy_dead", self, "check_container")
 
 
@@ -26,6 +26,6 @@ func spawn() -> void:
 
 
 func check_container() -> void:
-	if enemyContainer.get_child_count() == 0:
+	if enemyContainer.get_child_count() - 1 == 0:
 		Events.emit_signal("wave_complete")
 		queue_free()
