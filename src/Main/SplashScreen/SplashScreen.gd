@@ -1,6 +1,6 @@
 extends GameLevel
 
-const SPLASH_DURATION: float = 1.0
+const SPLASH_DURATION: float = 2.0
 
 onready var splashTimer: Timer = $SplashTimer
 
