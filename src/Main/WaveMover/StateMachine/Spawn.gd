@@ -2,7 +2,7 @@ extends State
 
 const SPAWN_TIME: float = 0.75
 
-export var target_position: float = 0
+export var target_position: float = 32
 
 var waveMover: WaveMover
 

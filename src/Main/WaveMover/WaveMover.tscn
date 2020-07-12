@@ -30,6 +30,8 @@ script = ExtResource( 6 )
 script = ExtResource( 7 )
 move_count = 6
 move_distance = 25
+move_time = 0.1
+move_pause = 0.1
 
 [node name="SidewaysTween" type="Tween" parent="StateMachine/MoveSideways"]
 
@@ -56,33 +58,6 @@ stream = ExtResource( 10 )
 
 [node name="BaseEnemy" parent="EnemyContainer" instance=ExtResource( 4 )]
 position = Vector2( -216, 24 )
-
-[node name="BaseEnemy2" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( -168, 24 )
-
-[node name="BaseEnemy3" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( -120, 24 )
-
-[node name="BaseEnemy4" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( -72, 24 )
-
-[node name="BaseEnemy5" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( -24, 24 )
-
-[node name="BaseEnemy6" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 24, 24 )
-
-[node name="BaseEnemy7" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 72, 24 )
-
-[node name="BaseEnemy8" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 120, 24 )
-
-[node name="BaseEnemy9" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 168, 24 )
-
-[node name="BaseEnemy10" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( 216, 24 )
 [connection signal="tween_all_completed" from="StateMachine/Spawn/SpawnTween" to="StateMachine/Spawn" method="_on_SpawnTween_tween_all_completed"]
 [connection signal="tween_all_completed" from="StateMachine/MoveSideways/SidewaysTween" to="StateMachine/MoveSideways" method="_on_SidewaysTween_tween_all_completed"]
 [connection signal="timeout" from="StateMachine/MoveSideways/PauseTimer" to="StateMachine/MoveSideways" method="_on_PauseTimer_timeout"]

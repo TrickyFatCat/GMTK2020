@@ -16,7 +16,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
 	if stateMachine.is_current_state("Active"):
-		destroy_enemy()
+		queue_free()
 
 
 func _ready() -> void:
