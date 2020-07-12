@@ -1,8 +1,6 @@
 extends Position2D 
 class_name Weapon
 
-export(String, FILE, "*.tscn") var projectile_path: = ""
-
 var rate_of_fire: float = 3
 var can_shoot: bool = true
 var is_shooting: bool = false

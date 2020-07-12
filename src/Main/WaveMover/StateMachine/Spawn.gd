@@ -41,4 +41,6 @@ func enter(msg: Dictionary = {}) -> void:
 func exit() -> void:
 	for enemy in enemyContainer.get_children():
 		enemy.stateMachine.transition_to("Active")
+	
+	get_node("../../EnemyShootController").start_shooting()
 	return
