@@ -37,6 +37,7 @@ script = ExtResource( 9 )
 frames = SubResource( 1 )
 
 [node name="EnemyHitpoints" parent="." instance=ExtResource( 3 )]
+collision_layer = 34
 
 [node name="CollisionShape2D" parent="EnemyHitpoints" index="0"]
 shape = SubResource( 2 )
@@ -53,7 +54,10 @@ script = ExtResource( 2 )
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource( 11 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="on_hitpoints_zero" from="EnemyHitpoints" to="." method="_on_EnemyHitpoints_on_hitpoints_zero"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 
 [editable path="EnemyHitpoints"]

@@ -26,7 +26,6 @@ func physics_process(delta: float) -> void:
 
 # warning-ignore:unused_argument
 func enter(msg: Dictionary = {}) -> void:
-	print("Entered spawn")
 	spawnTween.interpolate_method(
 		waveMover,
 		"set_position_y",

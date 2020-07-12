@@ -4,9 +4,6 @@ class_name WaveMover
 onready var stateMachine: StateMachine = $StateMachine
 onready var enemyContainer: Node2D = $EnemyContainer
 
-func _on_DeathZone_body_entered(body: Node) -> void:
-	Global.player.destroy_player()
-
 
 func _ready() -> void:
 	Events.connect("enemy_dead", self, "check_container")
