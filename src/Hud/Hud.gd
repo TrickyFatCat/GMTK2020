@@ -5,6 +5,7 @@ onready var startCounter: VBoxContainer = $StartCounter
 onready var startTimer: Label = $StartCounter/Counter
 onready var jumbleTimer: Label = $HBoxContainer/JumbleCounter/JumbleTimer
 onready var jumbleMessage: Label = $JumbleMessage
+onready var pointsNumber: Label = $HBoxContainer/Points/PointsNumber
 
 
 func _ready() -> void:
@@ -15,7 +16,9 @@ func _ready() -> void:
 	Events.connect("controls_jumbled", self, "show_jumble_message")
 	GameManager.connect("count_started", self, "show_start_counter")
 	GameManager.connect("game_started", self, "hide_start_counter")
+	Events.connect("points_increased", self, "update_points")
 	update_hitpoints()
+	update_points()
 
 
 func _process(delta: float) -> void:
@@ -26,11 +29,11 @@ func _process(delta: float) -> void:
 		if Global.waveSpawner.spawnTimer.wait_time > 0:
 			startTimer.text = String(round(Global.waveSpawner.spawnTimer.time_left))
 	
-	jumbleTimer.text = String(round(Global.jumbler.jumbleTimer.time_left))
+	jumbleTimer.text = String("%02d" % round(Global.jumbler.jumbleTimer.time_left))
 
 
 func update_hitpoints() -> void:
-	hitpointsNumber.text = String(Global.player.hitPoints.hitpoints)
+	hitpointsNumber.text = String("%02d" % Global.player.hitPoints.hitpoints)
 
 
 func show_start_counter() -> void:
@@ -45,3 +48,7 @@ func show_jumble_message() -> void:
 	jumbleMessage.visible = true
 	yield(get_tree().create_timer(1),"timeout")
 	jumbleMessage.visible = false
+
+
+func update_points() -> void:
+	pointsNumber.text = String("%07d" % Global.points)
