@@ -85,6 +85,7 @@ GameManager="*res://src/Singletons/GameManager/GameManager.tscn"
 Events="*res://src/Singletons/Events.gd"
 LevelLoader="*res://src/Singletons/LevelLoader.gd"
 Global="*res://src/Singletons/Global.gd"
+GameCamera="*res://src/Camera/GameCamera.tscn"
 
 [display]
 

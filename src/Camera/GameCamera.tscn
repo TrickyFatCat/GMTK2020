@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Background/StarField.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Background/spr_background.png" type="Texture" id=2]
+[ext_resource path="res://src/Camera/GameCamera.gd" type="Script" id=3]
+[ext_resource path="res://src/Camera/CameraShaker.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve" id=1]
+max_value = 0.75
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.245833, 0.748295 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 0.0482635 ), 0.0, 0.0, 0, 0, Vector2( 0.745833, 0.75 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+width = 1024
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 320, 180, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 50.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.25
+scale_random = 1.0
+scale_curve = SubResource( 2 )
+
+[node name="GameCamera" type="Camera2D"]
+anchor_mode = 0
+current = true
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="BackgroundTexture" type="TextureRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StarField" parent="CanvasLayer" instance=ExtResource( 1 )]
+position = Vector2( 320, 180 )
+amount = 10
+visibility_rect = Rect2( -320, -180, 640, 360 )
+process_material = SubResource( 3 )
+
+[node name="CameraShaker" parent="." instance=ExtResource( 4 )]

@@ -5,22 +5,5 @@
 [node name="MainMenu" instance=ExtResource( 1 )]
 next_level = "res://levels/GameLevel/GameLevel.tscn"
 
-[node name="Label" type="Label" parent="MenuCanvas" index="0"]
-margin_left = 506.0
-margin_top = 170.0
-margin_right = 578.0
-margin_bottom = 184.0
-text = "Main menu"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label2" type="Label" parent="MenuCanvas" index="1"]
-margin_left = 480.0
-margin_top = 278.0
-margin_right = 606.0
-margin_bottom = 292.0
-text = "Press space to start"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Header" parent="MenuCanvas" index="0"]
+text = "Space jumblers"

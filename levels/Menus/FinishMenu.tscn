@@ -5,22 +5,5 @@
 [node name="FinishMenu" instance=ExtResource( 1 )]
 next_level = "res://levels/GameLevel/GameLevel.tscn"
 
-[node name="Label" type="Label" parent="MenuCanvas" index="0"]
-margin_left = 480.0
-margin_top = 146.0
-margin_right = 559.0
-margin_bottom = 160.0
-text = "Finish menu"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label2" type="Label" parent="MenuCanvas" index="1"]
-margin_left = 478.0
-margin_top = 303.0
-margin_right = 557.0
-margin_bottom = 317.0
-text = "Press space to restart"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Header" parent="MenuCanvas" index="0"]
+text = "GAME OVER"
