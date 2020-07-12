@@ -8,7 +8,7 @@ var is_active: bool = true setget set_is_active
 onready var stateMachine: StateMachine = $StateMachine
 onready var collider: CollisionShape2D = $CollisionShape2D
 onready var sprite: AnimatedSprite = $Sprite
-
+onready var hitPoints: HitPoints = $PlayerHitpoints
 
 func _on_PlayerHitpoints_on_hitpoints_decreased() -> void:
 	Events.emit_signal("player_took_damage")
@@ -16,7 +16,6 @@ func _on_PlayerHitpoints_on_hitpoints_decreased() -> void:
 
 func _on_PlayerHitpoints_on_hitpoints_zero() -> void:
 	stateMachine.transition_to("Death")
-#	Events.emit_signal("player_dead")
 
 
 func _init() -> void:

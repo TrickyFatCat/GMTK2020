@@ -1,5 +1,6 @@
 extends Node
 
+signal count_started()
 signal game_started()
 signal game_paused()
 signal game_stoped()

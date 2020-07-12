@@ -1,6 +1,7 @@
 extends Node
+class_name Jumbler
 
-var jumble_pause: float = 5
+var jumble_pause: float = 15
 var actions: Array = [
 	"shoot",
 	"move_left",
@@ -17,6 +18,10 @@ onready var jumbleTimer: Timer = $JumbleTimer
 
 func _on_JumbleTimer_timeout() -> void:
 	jumble_controls()
+
+
+func _init() -> void:
+	Global.jumbler = self
 
 
 func _ready() -> void:

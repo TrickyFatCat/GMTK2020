@@ -1,0 +1,161 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Player/spr_playerBlue.png" type="Texture" id=1]
+[ext_resource path="res://assets/Fonts/fnt_kenneyBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/Hud/Hud.gd" type="Script" id=3]
+[ext_resource path="res://assets/Fonts/fnt_hint.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/Interface/spr_jumbleIcon.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+extra_spacing_bottom = -3
+font_data = ExtResource( 2 )
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="JumbleMessage" type="Label" parent="."]
+visible = false
+margin_top = 79.7282
+margin_right = 640.0
+margin_bottom = 103.728
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.67451, 0.223529, 0.223529, 1 )
+text = "CONTROLS ARE JUMBLED!"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = 4.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+custom_constants/separation = 32
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitpointsCounter" type="HBoxContainer" parent="HBoxContainer"]
+margin_left = 182.0
+margin_right = 234.0
+margin_bottom = 24.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HitpointsCounter"]
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 1 )
+expand = true
+
+[node name="HitpointsNumber" type="Label" parent="HBoxContainer/HitpointsCounter"]
+margin_left = 28.0
+margin_top = 4.0
+margin_right = 52.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 1 )
+text = "99"
+align = 1
+valign = 1
+
+[node name="HitpointsCounter2" type="HBoxContainer" parent="HBoxContainer"]
+margin_left = 266.0
+margin_right = 366.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HitpointsCounter2"]
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 1 )
+expand = true
+
+[node name="HitpointsNumber" type="Label" parent="HBoxContainer/HitpointsCounter2"]
+margin_left = 28.0
+margin_top = 4.0
+margin_right = 100.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 1 )
+text = "999999"
+align = 1
+valign = 1
+
+[node name="JumbleCounter" type="HBoxContainer" parent="HBoxContainer"]
+margin_left = 398.0
+margin_right = 450.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/JumbleCounter"]
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 5 )
+expand = true
+
+[node name="JumbleTimer" type="Label" parent="HBoxContainer/JumbleCounter"]
+margin_left = 28.0
+margin_top = 4.0
+margin_right = 52.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 1 )
+text = "99"
+align = 1
+valign = 1
+
+[node name="StartCounter" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -26.0
+margin_right = 320.0
+margin_bottom = 26.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CounterHeader" type="Label" parent="StartCounter"]
+margin_right = 640.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0.8, 0, 1 )
+text = "NEW WAVE IN"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Counter" type="Label" parent="StartCounter"]
+margin_top = 28.0
+margin_right = 640.0
+margin_bottom = 52.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0.8, 0, 1 )
+text = "99"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

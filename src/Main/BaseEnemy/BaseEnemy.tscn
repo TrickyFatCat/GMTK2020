@@ -59,6 +59,7 @@ script = ExtResource( 11 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="EnemyWeapon" parent="." instance=ExtResource( 13 )]
+position = Vector2( 0, 45 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="on_hitpoints_zero" from="EnemyHitpoints" to="." method="_on_EnemyHitpoints_on_hitpoints_zero"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

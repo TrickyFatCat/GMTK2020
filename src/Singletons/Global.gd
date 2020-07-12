@@ -3,6 +3,8 @@ extends Node
 const FLOOR_NORMAL: Vector2 = Vector2.ZERO
 
 var player: Player
+var waveSpawner: WaveSpawner
+var jumbler: Jumbler
 var wave_count: int = 0
 
 

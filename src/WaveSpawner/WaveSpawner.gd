@@ -13,6 +13,10 @@ func _on_SpawnTimer_timeout() -> void:
 	spawn_wave()
 
 
+func _init() -> void:
+	Global.waveSpawner = self
+
+
 func _ready() -> void:
 	Events.connect("wave_complete", spawnTimer, "start")
 	GameManager.connect("game_started", self, "spawn_wave")
@@ -26,5 +30,6 @@ func spawn_wave() -> void:
 	yield(get_tree(), "idle_frame")
 	wave.position = self.position
 	wave.call_deferred("spawn")
+	Events.emit_signal("wave_spawned")
 
 
