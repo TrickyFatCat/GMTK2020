@@ -4,9 +4,6 @@
 
 [node name="HardWave" instance=ExtResource( 1 )]
 
-[node name="StateMachine" parent="." index="0"]
-initial_state = NodePath("../../HardWave/StateMachine/Inactive")
-
 [node name="MoveSideways" parent="StateMachine" index="2"]
 move_count = 15
 move_distance = 20
