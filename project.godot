@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://src/Main/BaseEnemy/BaseEnemy.gd"
 }, {
 "base": "Node",
+"class": "FlashController",
+"language": "GDScript",
+"path": "res://src/FlashController/FlashController.gd"
+}, {
+"base": "Node",
 "class": "GameLevel",
 "language": "GDScript",
 "path": "res://src/Main/BaseLevel/BaseLevel.gd"
@@ -66,6 +71,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Enemy": "",
+"FlashController": "",
 "GameLevel": "",
 "HitPoints": "",
 "Jumbler": "",
@@ -92,6 +98,7 @@ Events="*res://src/Singletons/Events.gd"
 LevelLoader="*res://src/Singletons/LevelLoader.gd"
 Global="*res://src/Singletons/Global.gd"
 GameCamera="*res://src/Camera/GameCamera.tscn"
+GlobalTween="*res://src/Singletons/GlobalTween.tscn"
 
 [display]
 

@@ -7,9 +7,12 @@ var music: Array = [
 	"res://sounds/bgm_track_02.wav"
 ]
 
+onready var sound_gameover: AudioStream = preload("res://sounds/sfx_gameover.WAV")
+
 
 func _ready() -> void:
 	GameManager.connect("game_started", self, "play_random_track")
+	Events.connect("player_dead", self, "play_gameover")
 
 
 func play_random_track() -> void:
@@ -21,3 +24,9 @@ func play_random_track() -> void:
 
 func _on_finished() -> void:
 	play_random_track()
+
+
+func play_gameover() -> void:
+	stop()
+	stream = sound_gameover
+	play()

@@ -15,7 +15,7 @@ move_time = 1.0
 move_pause = 1.0
 
 [node name="EnemyShootController" parent="." index="1"]
-shoot_pause = 3.0
+shoot_pause = 4.0
 
 [node name="Enemy00" parent="EnemyContainer" index="0" instance=ExtResource( 1 )]
 position = Vector2( -64, 24 )
@@ -39,43 +39,43 @@ position = Vector2( 96, 24 )
 position = Vector2( -96, 24 )
 
 [node name="Enemy07" parent="EnemyContainer" index="7" instance=ExtResource( 1 )]
-position = Vector2( -128, 64 )
+position = Vector2( 96, 120 )
 
 [node name="Enemy08" parent="EnemyContainer" index="8" instance=ExtResource( 1 )]
-position = Vector2( -96, 64 )
+position = Vector2( 96, 88 )
 
 [node name="Enemy09" parent="EnemyContainer" index="9" instance=ExtResource( 1 )]
-position = Vector2( -64, 64 )
+position = Vector2( 0, 184 )
 
 [node name="Enemy10" parent="EnemyContainer" index="10" instance=ExtResource( 1 )]
-position = Vector2( -32, 64 )
+position = Vector2( -96, 120 )
 
 [node name="Enemy11" parent="EnemyContainer" index="11" instance=ExtResource( 1 )]
-position = Vector2( 0, 64 )
+position = Vector2( -96, 88 )
 
 [node name="Enemy12" parent="EnemyContainer" index="12" instance=ExtResource( 1 )]
-position = Vector2( 32, 64 )
+position = Vector2( 96, 56 )
 
 [node name="Enemy13" parent="EnemyContainer" index="13" instance=ExtResource( 1 )]
-position = Vector2( -160, 64 )
+position = Vector2( -96, 56 )
 
 [node name="Enemy14" parent="EnemyContainer" index="14" instance=ExtResource( 1 )]
-position = Vector2( 0, 104 )
+position = Vector2( -64, 152 )
 
 [node name="Enemy15" parent="EnemyContainer" index="15" instance=ExtResource( 1 )]
-position = Vector2( 32, 104 )
+position = Vector2( -32, 152 )
 
 [node name="Enemy16" parent="EnemyContainer" index="16" instance=ExtResource( 1 )]
-position = Vector2( 64, 104 )
+position = Vector2( 0, 152 )
 
 [node name="Enemy17" parent="EnemyContainer" index="17" instance=ExtResource( 1 )]
-position = Vector2( 96, 104 )
+position = Vector2( 32, 152 )
 
 [node name="Enemy18" parent="EnemyContainer" index="18" instance=ExtResource( 1 )]
-position = Vector2( 128, 104 )
+position = Vector2( 64, 152 )
 
 [node name="Enemy19" parent="EnemyContainer" index="19" instance=ExtResource( 1 )]
-position = Vector2( 160, 104 )
+position = Vector2( 96, 152 )
 
 [node name="Enemy20" parent="EnemyContainer" index="20" instance=ExtResource( 1 )]
-position = Vector2( -32, 104 )
+position = Vector2( -96, 152 )

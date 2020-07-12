@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Main/StateMachine/State.gd" type="Script" id=2]
@@ -15,7 +15,26 @@
 [ext_resource path="res://src/Main/BaseEnemy/EnemyWeapon.tscn" type="PackedScene" id=13]
 [ext_resource path="res://sounds/sfx_explosion.WAV" type="AudioStream" id=14]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float u_alpha : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 u_colour: hint_color = vec4(1.0);
+
+void fragment()
+{
+	vec4 texture_colour = texture(TEXTURE, UV);
+	COLOR.rbg = texture_colour.rbg * (1.0 - u_alpha) + u_colour.rbg * u_alpha;
+	COLOR.a = texture_colour.a;
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/u_alpha = 0.0
+shader_param/u_colour = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": false,
@@ -28,7 +47,7 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 44.0429, 39.1282 )
 
 [node name="BaseEnemy" type="Node2D"]
@@ -36,13 +55,14 @@ scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
+material = SubResource( 2 )
+frames = SubResource( 3 )
 
 [node name="EnemyHitpoints" parent="." instance=ExtResource( 3 )]
 collision_layer = 34
 
 [node name="CollisionShape2D" parent="EnemyHitpoints" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -65,6 +85,7 @@ position = Vector2( 0, 45 )
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="on_hitpoints_decreased" from="EnemyHitpoints" to="." method="_on_EnemyHitpoints_on_hitpoints_decreased"]
 [connection signal="on_hitpoints_zero" from="EnemyHitpoints" to="." method="_on_EnemyHitpoints_on_hitpoints_zero"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 

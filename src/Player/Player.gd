@@ -10,13 +10,33 @@ onready var collider: CollisionShape2D = $CollisionShape2D
 onready var sprite: AnimatedSprite = $Sprite
 onready var hitPoints: HitPoints = $PlayerHitpoints
 onready var damageSound: AudioStreamPlayer = $DamageSound
+onready var flashController: FlashController = $Sprite/FlashController
+
 
 func _on_PlayerHitpoints_on_hitpoints_decreased() -> void:
 	Events.emit_signal("player_took_damage")
+	flashController.is_active = true
 	damageSound.play()
 
+
 func _on_PlayerHitpoints_on_hitpoints_zero() -> void:
-	stateMachine.transition_to("Death")0
+	stateMachine.transition_to("Death")
+
+
+func _on_Sprite_animation_finished() -> void:
+	if stateMachine.is_current_state("Death"):
+		stateMachine.transition_to("Inactive")
+
+
+func _on_VisibilityNotifier2D_screen_exited() -> void:
+	if position.x < -10:
+		position.x = 650
+	elif position.x > 0:
+		position.x = 0
+
+
+func _on_PlayerHitpoints_on_invulnerability_fineshed() -> void:
+	flashController.is_active = false
 
 
 func _init() -> void:
@@ -50,13 +70,3 @@ func destroy_player() -> void:
 	$PlayerHitpoints.decrease_hitpoints($PlayerHitpoints.hitpoints)
 
 
-func _on_Sprite_animation_finished() -> void:
-	if stateMachine.is_current_state("Death"):
-		stateMachine.transition_to("Inactive")
-
-
-func _on_VisibilityNotifier2D_screen_exited() -> void:
-	if position.x < -10:
-		position.x = 650
-	elif position.x > 0:
-		position.x = 0

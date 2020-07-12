@@ -34,3 +34,5 @@ func destroy_enemy() -> void:
 
 func shoot() -> void:
 	weapon.process_shooting()
+
+

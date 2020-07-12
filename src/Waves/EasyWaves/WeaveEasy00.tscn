@@ -14,11 +14,8 @@ move_distance = 15
 move_time = 1.0
 move_pause = 1.0
 
-[node name="MoveDown" parent="StateMachine" index="3"]
-move_distance = 15
-
 [node name="EnemyShootController" parent="." index="1"]
-shoot_pause = 3.0
+shoot_pause = 4.0
 
 [node name="Enemy00" parent="EnemyContainer" index="0" instance=ExtResource( 1 )]
 position = Vector2( -64, 24 )
