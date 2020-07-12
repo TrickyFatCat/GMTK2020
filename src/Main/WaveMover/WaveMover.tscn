@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Main/StateMachine/State.gd" type="Script" id=2]
 [ext_resource path="res://src/Main/WaveMover/WaveMover.gd" type="Script" id=3]
-[ext_resource path="res://src/Main/BaseEnemy/BaseEnemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Main/WaveMover/StateMachine/Inactive.gd" type="Script" id=5]
 [ext_resource path="res://src/Main/WaveMover/StateMachine/Spawn.gd" type="Script" id=6]
 [ext_resource path="res://src/Main/WaveMover/StateMachine/MoveSideways.gd" type="Script" id=7]
@@ -55,9 +54,6 @@ script = ExtResource( 9 )
 stream = ExtResource( 10 )
 
 [node name="EnemyContainer" type="Node2D" parent="."]
-
-[node name="BaseEnemy" parent="EnemyContainer" instance=ExtResource( 4 )]
-position = Vector2( -216, 24 )
 [connection signal="tween_all_completed" from="StateMachine/Spawn/SpawnTween" to="StateMachine/Spawn" method="_on_SpawnTween_tween_all_completed"]
 [connection signal="tween_all_completed" from="StateMachine/MoveSideways/SidewaysTween" to="StateMachine/MoveSideways" method="_on_SidewaysTween_tween_all_completed"]
 [connection signal="timeout" from="StateMachine/MoveSideways/PauseTimer" to="StateMachine/MoveSideways" method="_on_PauseTimer_timeout"]

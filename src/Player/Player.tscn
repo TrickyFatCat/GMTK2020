@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Player/StateMachine/Fly.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/Explosion/spr_explosion_03.png" type="Texture" id=15]
 [ext_resource path="res://assets/Explosion/spr_explosion_00.png" type="Texture" id=16]
 [ext_resource path="res://assets/Explosion/spr_explosion_04.png" type="Texture" id=17]
+[ext_resource path="res://sounds/sfx_player_damaged.WAV" type="AudioStream" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -80,7 +81,14 @@ script = ExtResource( 10 )
 [node name="PlayerWeapon" parent="WeaponController" instance=ExtResource( 11 )]
 
 [node name="PlayerHitpoints" parent="." instance=ExtResource( 12 )]
+hitpoints_max = 5
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="tween_all_completed" from="StateMachine/Spawn/SpawnTween" to="StateMachine/Spawn" method="_on_SpawnTween_tween_all_completed"]
 [connection signal="on_hitpoints_decreased" from="PlayerHitpoints" to="." method="_on_PlayerHitpoints_on_hitpoints_decreased"]
 [connection signal="on_hitpoints_zero" from="PlayerHitpoints" to="." method="_on_PlayerHitpoints_on_hitpoints_zero"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

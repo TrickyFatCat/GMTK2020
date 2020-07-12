@@ -14,6 +14,7 @@ var action_lists: Dictionary = {
 }
 
 onready var jumbleTimer: Timer = $JumbleTimer
+onready var jumpbleSound: AudioStreamPlayer = $JumbleSound
 
 
 func _on_JumbleTimer_timeout() -> void:
@@ -43,7 +44,9 @@ func jumble_controls() -> void:
 	add_events_to_action("shoot", 0)
 	add_events_to_action("move_left", 1)
 	add_events_to_action("move_right", 2)
+	jumpbleSound.play()
 	Events.emit_signal("controls_jumbled")
+	
 
 
 func add_events_to_action(action: String, event_id: int) -> void:

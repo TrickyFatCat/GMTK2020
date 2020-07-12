@@ -7,7 +7,7 @@ export var move_pause: float = 0.75
 
 var move_direction: int = -1
 var waveMover: WaveMover
-var change_factor_max: float = 0.5
+var change_factor_max: float = 0.75
 
 onready var sidewaysTween: Tween = $SidewaysTween
 onready var move_counter: int = move_count / 2 

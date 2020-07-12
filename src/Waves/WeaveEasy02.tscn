@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Enemies/Enemy00.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Main/WaveMover/WaveMover.tscn" type="PackedScene" id=2]
+
+[node name="WeaveEasy00" instance=ExtResource( 2 )]
+
+[node name="StateMachine" parent="." index="0"]
+initial_state = NodePath("../../WeaveEasy00/StateMachine/Inactive")
+
+[node name="MoveSideways" parent="StateMachine" index="2"]
+move_count = 21
+move_distance = 15
+move_time = 1.0
+move_pause = 1.0
+
+[node name="EnemyShootController" parent="." index="1"]
+shoot_pause = 3.0
+
+[node name="Enemy00" parent="EnemyContainer" index="0" instance=ExtResource( 1 )]
+position = Vector2( -64, 24 )
+
+[node name="Enemy01" parent="EnemyContainer" index="1" instance=ExtResource( 1 )]
+position = Vector2( -32, 24 )
+
+[node name="Enemy02" parent="EnemyContainer" index="2" instance=ExtResource( 1 )]
+position = Vector2( 0, 24 )
+
+[node name="Enemy03" parent="EnemyContainer" index="3" instance=ExtResource( 1 )]
+position = Vector2( 32, 24 )
+
+[node name="Enemy04" parent="EnemyContainer" index="4" instance=ExtResource( 1 )]
+position = Vector2( 64, 24 )
+
+[node name="Enemy05" parent="EnemyContainer" index="5" instance=ExtResource( 1 )]
+position = Vector2( 96, 24 )
+
+[node name="Enemy06" parent="EnemyContainer" index="6" instance=ExtResource( 1 )]
+position = Vector2( -96, 24 )
+
+[node name="Enemy07" parent="EnemyContainer" index="7" instance=ExtResource( 1 )]
+position = Vector2( 96, 120 )
+
+[node name="Enemy08" parent="EnemyContainer" index="8" instance=ExtResource( 1 )]
+position = Vector2( 96, 88 )
+
+[node name="Enemy09" parent="EnemyContainer" index="9" instance=ExtResource( 1 )]
+position = Vector2( 0, 184 )
+
+[node name="Enemy10" parent="EnemyContainer" index="10" instance=ExtResource( 1 )]
+position = Vector2( -96, 120 )
+
+[node name="Enemy11" parent="EnemyContainer" index="11" instance=ExtResource( 1 )]
+position = Vector2( -96, 88 )
+
+[node name="Enemy12" parent="EnemyContainer" index="12" instance=ExtResource( 1 )]
+position = Vector2( 96, 56 )
+
+[node name="Enemy13" parent="EnemyContainer" index="13" instance=ExtResource( 1 )]
+position = Vector2( -96, 56 )
+
+[node name="Enemy14" parent="EnemyContainer" index="14" instance=ExtResource( 1 )]
+position = Vector2( -64, 152 )
+
+[node name="Enemy15" parent="EnemyContainer" index="15" instance=ExtResource( 1 )]
+position = Vector2( -32, 152 )
+
+[node name="Enemy16" parent="EnemyContainer" index="16" instance=ExtResource( 1 )]
+position = Vector2( 0, 152 )
+
+[node name="Enemy17" parent="EnemyContainer" index="17" instance=ExtResource( 1 )]
+position = Vector2( 32, 152 )
+
+[node name="Enemy18" parent="EnemyContainer" index="18" instance=ExtResource( 1 )]
+position = Vector2( 64, 152 )
+
+[node name="Enemy19" parent="EnemyContainer" index="19" instance=ExtResource( 1 )]
+position = Vector2( 96, 152 )
+
+[node name="Enemy20" parent="EnemyContainer" index="20" instance=ExtResource( 1 )]
+position = Vector2( -96, 152 )

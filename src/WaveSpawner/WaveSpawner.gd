@@ -3,7 +3,12 @@ class_name WaveSpawner
 
 const SPAWN_DURATION: float = 3.0
 
-var waves_easy: PoolStringArray = []
+var waves_easy: PoolStringArray = [
+	"res://src/Waves/WeaveEasy00.tscn",
+	"res://src/Waves/WeaveEasy01.tscn",
+	"res://src/Waves/WeaveEasy02.tscn",
+	"res://src/Waves/WeaveEasy03.tscn"
+]
 var active_waves
 
 onready var spawnTimer: = $SpawnTimer
@@ -24,7 +29,9 @@ func _ready() -> void:
 
 
 func spawn_wave() -> void:
-	var wave_scene:= load("res://src/Main/WaveMover/WaveMover.tscn")
+	randomize()
+	var wave_id = randi() % waves_easy.size()
+	var wave_scene:= load(waves_easy[wave_id])
 	var wave = wave_scene.instance()
 	LevelLoader.current_level.call_deferred("add_child", wave)
 	yield(get_tree(), "idle_frame")

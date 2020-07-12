@@ -6,6 +6,7 @@ onready var startTimer: Label = $StartCounter/Counter
 onready var jumbleTimer: Label = $HBoxContainer/JumbleCounter/JumbleTimer
 onready var jumbleMessage: Label = $JumbleMessage
 onready var pointsNumber: Label = $HBoxContainer/Points/PointsNumber
+onready var countdownSound: AudioStreamPlayer = $CountdownSound
 
 
 func _ready() -> void:
@@ -38,10 +39,12 @@ func update_hitpoints() -> void:
 
 func show_start_counter() -> void:
 	startCounter.visible = true
+	countdownSound.play()
 
 
 func hide_start_counter() -> void:
 	startCounter.visible = false
+	countdownSound.stop()
 
 
 func show_jumble_message() -> void:

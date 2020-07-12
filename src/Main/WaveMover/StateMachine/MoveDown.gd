@@ -1,7 +1,7 @@
 extends State
 
-export var move_distance: int = 25
-export var move_time: float = 1
+export var move_distance: int = 10
+export var move_time: float = 0.25
 
 var waveMover: WaveMover
 
@@ -39,7 +39,7 @@ func move_down() -> void:
 		waveMover.position.y,
 		target_position,
 		move_time,
-		Tween.TRANS_ELASTIC,
+		Tween.TRANS_LINEAR,
 		Tween.EASE_OUT 
 	)
 	downTween.start()

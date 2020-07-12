@@ -9,13 +9,14 @@ onready var stateMachine: StateMachine = $StateMachine
 onready var collider: CollisionShape2D = $CollisionShape2D
 onready var sprite: AnimatedSprite = $Sprite
 onready var hitPoints: HitPoints = $PlayerHitpoints
+onready var damageSound: AudioStreamPlayer = $DamageSound
 
 func _on_PlayerHitpoints_on_hitpoints_decreased() -> void:
 	Events.emit_signal("player_took_damage")
-
+	damageSound.play()
 
 func _on_PlayerHitpoints_on_hitpoints_zero() -> void:
-	stateMachine.transition_to("Death")
+	stateMachine.transition_to("Death")0
 
 
 func _init() -> void:
@@ -52,3 +53,10 @@ func destroy_player() -> void:
 func _on_Sprite_animation_finished() -> void:
 	if stateMachine.is_current_state("Death"):
 		stateMachine.transition_to("Inactive")
+
+
+func _on_VisibilityNotifier2D_screen_exited() -> void:
+	if position.x < -10:
+		position.x = 650
+	elif position.x > 0:
+		position.x = 0

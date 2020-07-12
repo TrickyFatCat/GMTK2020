@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/Player/spr_playerBlue.png" type="Texture" id=1]
 [ext_resource path="res://assets/Fonts/fnt_data.tres" type="DynamicFont" id=2]
@@ -6,6 +6,15 @@
 [ext_resource path="res://assets/Fonts/fnt_hint.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/Interface/spr_jumbleIcon.png" type="Texture" id=5]
 [ext_resource path="res://assets/Interface/spr_pointIcon.png" type="Texture" id=6]
+[ext_resource path="res://assets/Fonts/fnt_kenneyBold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://sounds/sfx_countdown.wav" type="AudioStream" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0.913725, 0.913725, 0.913725, 1 )
+extra_spacing_char = -1
+extra_spacing_space = 5
+font_data = ExtResource( 7 )
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -15,7 +24,7 @@ visible = false
 margin_top = 79.7282
 margin_right = 640.0
 margin_bottom = 103.728
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.67451, 0.223529, 0.223529, 1 )
 text = "CONTROLS ARE JUMBLED!"
 align = 1
@@ -155,3 +164,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CountdownSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )

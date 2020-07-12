@@ -2,6 +2,7 @@
 
 [ext_resource path="res://src/Singletons/MusicPlayer.gd" type="Script" id=1]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+volume_db = -5.0
 script = ExtResource( 1 )
 [connection signal="finished" from="." to="." method="_on_finished"]
