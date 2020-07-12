@@ -1,13 +1,15 @@
 extends Position2D 
 class_name Weapon
 
-var rate_of_fire: float = 3
+export var rate_of_fire: float = 3
+
 var can_shoot: bool = true
 var is_shooting: bool = false
 var projectile_scene
 
 
 onready var shootTimer: Timer = $ShootTimer
+onready var shootSound: AudioStreamPlayer = $ShootSound
 
 
 func _on_ShootTimer_timeout() -> void:
@@ -25,5 +27,7 @@ func process_shooting() -> void:
 	projectile.global_position = self.global_position
 	can_shoot = false
 	shootTimer.start()
+	if not shootSound.playing:
+		shootSound.play()
 
 

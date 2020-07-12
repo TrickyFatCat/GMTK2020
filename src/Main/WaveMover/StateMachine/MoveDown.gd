@@ -6,6 +6,7 @@ export var move_time: float = 1
 var waveMover: WaveMover
 
 onready var downTween: Tween = $DownTween
+onready var moveSound: AudioStreamPlayer = get_node("../../MoveSound")
 
 
 func _on_DownTween_tween_all_completed() -> void:
@@ -42,5 +43,6 @@ func move_down() -> void:
 		Tween.EASE_OUT 
 	)
 	downTween.start()
+	moveSound.play()
 
 

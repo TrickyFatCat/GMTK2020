@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/Main/StateMachine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Main/StateMachine/State.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/Main/BaseEnemy/StateMachine/Death.gd" type="Script" id=11]
 [ext_resource path="res://src/Main/BaseEnemy/StateMachine/Inactive.gd" type="Script" id=12]
 [ext_resource path="res://src/Main/BaseEnemy/EnemyWeapon.tscn" type="PackedScene" id=13]
+[ext_resource path="res://sounds/sfx_explosion.WAV" type="AudioStream" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -60,6 +61,9 @@ script = ExtResource( 11 )
 
 [node name="EnemyWeapon" parent="." instance=ExtResource( 13 )]
 position = Vector2( 0, 45 )
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="on_hitpoints_zero" from="EnemyHitpoints" to="." method="_on_EnemyHitpoints_on_hitpoints_zero"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

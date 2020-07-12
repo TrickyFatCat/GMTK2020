@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/Main/Weapon/BaseWeapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sounds/sfx_player_shoot.WAV" type="AudioStream" id=2]
 
 [node name="PlayerWeapon" instance=ExtResource( 1 )]
-projectile_path = "res://src/Player/Weapon/PlayerProjectile.tscn"
+rate_of_fire = 4.0
+
+[node name="ShootSound" parent="." index="1"]
+stream = ExtResource( 2 )

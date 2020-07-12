@@ -2,7 +2,7 @@ extends State
 
 export var move_count: int = 2
 export var move_distance: int = 50
-export var move_time: float = 1
+export var move_time: float = 0.5
 export var move_pause: float = 0.75
 
 var move_direction: int = -1
@@ -14,6 +14,7 @@ onready var move_counter: int = move_count / 2
 onready var pauseTimer: Timer = $PauseTimer
 onready var change_factor: float = change_factor_max / get_node("../../EnemyContainer").get_child_count()
 onready var move_time_default: float = move_time
+onready var moveSound: AudioStreamPlayer = get_node("../../MoveSound")
 
 
 func _on_SidewaysTween_tween_all_completed() -> void:
@@ -56,11 +57,12 @@ func move_sideways() -> void:
 		waveMover.position.x,
 		target_position,
 		move_time,
-		Tween.TRANS_QUINT,
+		Tween.TRANS_LINEAR,
 		Tween.EASE_IN
 	)
 	sidewaysTween.start()
 	move_counter += 1
+	moveSound.play()
 
 
 func calculate_parameters() -> void:
